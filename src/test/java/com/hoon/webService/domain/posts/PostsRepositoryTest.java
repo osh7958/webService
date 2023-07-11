@@ -21,6 +21,10 @@ public class PostsRepositoryTest {
     @Autowired
     PostsRepository postsRepository;
 
+    /*
+    해당 메소드는 테스트 코드에 영향을 끼치지 않기 위해
+    테스트 메소드가 끝날 때 마다 repository 전체 비우는 코드이다.
+    */
     @After
     public void cleanup() {
         postsRepository.deleteAll();
@@ -34,14 +38,25 @@ public class PostsRepositoryTest {
                 .content("테스트 본문")
                 .author("jojoldu@gmail.com")
                 .build());
+        /*
+        테스트 기반 환경을 구축하는 단계 (테스트 데이터 값 입력)
+        */
 
         //when
         List<Posts> postsList = postsRepository.findAll();
+        /*
+        테스트 하고자 하는 행위 선언
+        여기서는 Posts 메서드가 DB에 삽입되는 것을 확인하기 위함
+        */
 
         //then
         Posts posts = postsList.get(0);
         assertThat(posts.getTitle(), is("테스트 게시글"));
         assertThat(posts.getContent(), is("테스트 본문"));
+        /*
+        테스트 결과 검즘
+        실제로 DB에 삽입 되었는지 확인
+        */
     }
 
     @Test
