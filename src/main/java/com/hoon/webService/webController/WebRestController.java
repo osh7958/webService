@@ -1,4 +1,4 @@
-package com.hoon.webService.web;
+package com.hoon.webService.webController;
 
 import com.hoon.webService.domain.posts.PostsRepository;
 import com.hoon.webService.dto.PostsSaveRequestDto;
